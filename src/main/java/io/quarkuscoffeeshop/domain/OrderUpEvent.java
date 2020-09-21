@@ -1,4 +1,4 @@
-package com.redhat.quarkus.cafe.domain;
+package io.quarkuscoffeeshop.domain;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
