@@ -4,13 +4,13 @@
   <parent>
     <artifactId>quarkuscoffeeshop-parent</artifactId>
     <groupId>io.quarkuscoffeeshop</groupId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
     <relativePath>../quarkuscoffeeshop-parent</relativePath>
   </parent>
 
   <groupId>io.quarkuscoffeeshop</groupId>
   <artifactId>quarkuscoffeeshop-domain</artifactId>
-  <version>3.0.0-SNAPSHOT</version>
+  <version>3.0.0</version>
   <name>quarkuscoffeeshop-domain</name>
   <properties />
 
