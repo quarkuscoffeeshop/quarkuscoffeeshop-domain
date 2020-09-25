@@ -1,4 +1,6 @@
 io/quarkuscoffeeshop/domain/LineItem.class
+io/quarkuscoffeeshop/domain/OrderPlacedEvent.class
+io/quarkuscoffeeshop/domain/OrderSource.class
 io/quarkuscoffeeshop/domain/EventType.class
 io/quarkuscoffeeshop/domain/EightySixException.class
 io/quarkuscoffeeshop/domain/OrderInEvent.class
@@ -8,7 +10,6 @@ io/quarkuscoffeeshop/domain/WebUpdate.class
 io/quarkuscoffeeshop/domain/Event.class
 io/quarkuscoffeeshop/domain/Item.class
 io/quarkuscoffeeshop/domain/OrderReadyUpdate.class
-io/quarkuscoffeeshop/domain/OrderInCommand.class
 io/quarkuscoffeeshop/domain/InQueueUpdate.class
 io/quarkuscoffeeshop/domain/OrderUpEvent.class
 io/quarkuscoffeeshop/domain/OrderStatus.class
