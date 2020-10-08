@@ -14,28 +14,20 @@ public class PlaceOrderCommand {
 
     private final CommandType commandType = CommandType.PLACE_ORDER;
 
-    Optional<Collection<OrderLineItem>> baristaItems = Optional.empty();
+    Optional<ArrayList<OrderLineItem>> baristaItems = Optional.empty();
 
-    Optional<Collection<OrderLineItem>> kitchenItems = Optional.empty();
+    Optional<ArrayList<OrderLineItem>> kitchenItems = Optional.empty();
 
     private BigDecimal total;
 
     public PlaceOrderCommand() {
     }
 
-    public PlaceOrderCommand(OrderSource orderSource, Collection<OrderLineItem> baristaItems, Collection<OrderLineItem> kitchenItems) {
+    public PlaceOrderCommand(OrderSource orderSource, Optional<ArrayList<OrderLineItem>> baristaItems, Optional<ArrayList<OrderLineItem>> kitchenItems, BigDecimal total) {
         this.orderSource = orderSource;
-        this.baristaItems = Optional.ofNullable(baristaItems);
-        this.kitchenItems = Optional.ofNullable(kitchenItems);
-    }
-
-    public void setBaristaItems(Collection<OrderLineItem> baristaItems) {
-        this.baristaItems = Optional.of(baristaItems);
-    }
-
-
-    public void setKitchenItems(Collection<OrderLineItem> kitchenItems) {
-        this.kitchenItems = Optional.of(kitchenItems);
+        this.baristaItems = baristaItems;
+        this.kitchenItems = kitchenItems;
+        this.total = total;
     }
 
     @Override
@@ -84,19 +76,19 @@ public class PlaceOrderCommand {
         return commandType;
     }
 
-    public Optional<Collection<OrderLineItem>> getBaristaItems() {
+    public Optional<ArrayList<OrderLineItem>> getBaristaItems() {
         return baristaItems;
     }
 
-    public void setBaristaItems(Optional<Collection<OrderLineItem>> baristaItems) {
+    public void setBaristaItems(Optional<ArrayList<OrderLineItem>> baristaItems) {
         this.baristaItems = baristaItems;
     }
 
-    public Optional<Collection<OrderLineItem>> getKitchenItems() {
+    public Optional<ArrayList<OrderLineItem>> getKitchenItems() {
         return kitchenItems;
     }
 
-    public void setKitchenItems(Optional<Collection<OrderLineItem>> kitchenItems) {
+    public void setKitchenItems(Optional<ArrayList<OrderLineItem>> kitchenItems) {
         this.kitchenItems = kitchenItems;
     }
 
