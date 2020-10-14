@@ -14,19 +14,19 @@ public class PlaceOrderCommand {
 
     private final CommandType commandType = CommandType.PLACE_ORDER;
 
-    Optional<ArrayList<OrderLineItem>> baristaItems = Optional.empty();
+    Optional<List<OrderLineItem>> baristaItems = Optional.empty();
 
-    Optional<ArrayList<OrderLineItem>> kitchenItems = Optional.empty();
+    Optional<List<OrderLineItem>> kitchenItems = Optional.empty();
 
     private BigDecimal total;
 
     public PlaceOrderCommand() {
     }
 
-    public PlaceOrderCommand(OrderSource orderSource, Optional<ArrayList<OrderLineItem>> baristaItems, Optional<ArrayList<OrderLineItem>> kitchenItems, BigDecimal total) {
+    public PlaceOrderCommand(OrderSource orderSource, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
         this.orderSource = orderSource;
-        this.baristaItems = baristaItems;
-        this.kitchenItems = kitchenItems;
+        this.baristaItems = Optional.ofNullable(baristaItems);
+        this.kitchenItems = Optional.ofNullable(kitchenItems);
         this.total = total;
     }
 
@@ -76,19 +76,19 @@ public class PlaceOrderCommand {
         return commandType;
     }
 
-    public Optional<ArrayList<OrderLineItem>> getBaristaItems() {
+    public Optional<List<OrderLineItem>> getBaristaItems() {
         return baristaItems;
     }
 
-    public void setBaristaItems(Optional<ArrayList<OrderLineItem>> baristaItems) {
+    public void setBaristaItems(Optional<List<OrderLineItem>> baristaItems) {
         this.baristaItems = baristaItems;
     }
 
-    public Optional<ArrayList<OrderLineItem>> getKitchenItems() {
+    public Optional<List<OrderLineItem>> getKitchenItems() {
         return kitchenItems;
     }
 
-    public void setKitchenItems(Optional<ArrayList<OrderLineItem>> kitchenItems) {
+    public void setKitchenItems(Optional<List<OrderLineItem>> kitchenItems) {
         this.kitchenItems = kitchenItems;
     }
 

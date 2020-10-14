@@ -2,6 +2,7 @@ package io.quarkuscoffeeshop.domain;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -10,14 +11,14 @@ public class OrderLineItem {
 
     Item item;
 
-    Double price;
+    BigDecimal price;
 
     String name;
 
     public OrderLineItem() {
     }
 
-    public OrderLineItem(Item item, Double price, String name) {
+    public OrderLineItem(Item item, BigDecimal price, String name) {
         this.item = item;
         this.price = price;
         this.name = name;
@@ -55,11 +56,11 @@ public class OrderLineItem {
         this.item = item;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
