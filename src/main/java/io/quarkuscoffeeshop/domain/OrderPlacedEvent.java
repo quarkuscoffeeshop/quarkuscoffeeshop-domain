@@ -14,6 +14,8 @@ public class OrderPlacedEvent {
 
     OrderSource orderSource;
 
+    public String rewardsId;
+
     public List<LineItem> beverages = new ArrayList<>();
 
     public List<LineItem> kitchenOrders = new ArrayList<>();
@@ -41,9 +43,10 @@ public class OrderPlacedEvent {
         this.kitchenOrders.addAll(kitchenOrdersList);
     }
 
-    public OrderPlacedEvent(String id, OrderSource orderSource, List<LineItem> beverages, List<LineItem> kitchenOrders) {
+    public OrderPlacedEvent(String id, OrderSource orderSource, String rewardsId, List<LineItem> beverages, List<LineItem> kitchenOrders) {
         this.id = id;
         this.orderSource = orderSource;
+        this.rewardsId = rewardsId;
         this.beverages = beverages;
         this.kitchenOrders = kitchenOrders;
     }
@@ -53,6 +56,7 @@ public class OrderPlacedEvent {
         return new StringJoiner(", ", OrderPlacedEvent.class.getSimpleName() + "[", "]")
                 .add("id='" + id + "'")
                 .add("orderSource=" + orderSource)
+                .add("rewardsId=" + rewardsId)
                 .add("beverages=" + beverages)
                 .add("kitchenOrders=" + kitchenOrders)
                 .add("eventType=" + eventType)
@@ -66,6 +70,7 @@ public class OrderPlacedEvent {
         OrderPlacedEvent that = (OrderPlacedEvent) o;
         return Objects.equals(id, that.id) &&
                 orderSource == that.orderSource &&
+                rewardsId == that.rewardsId &&
                 Objects.equals(beverages, that.beverages) &&
                 Objects.equals(kitchenOrders, that.kitchenOrders) &&
                 eventType == that.eventType;
@@ -73,7 +78,7 @@ public class OrderPlacedEvent {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderSource, beverages, kitchenOrders, eventType);
+        return Objects.hash(id, orderSource, rewardsId, beverages, kitchenOrders, eventType);
     }
 
     public String getId() {
@@ -91,6 +96,12 @@ public class OrderPlacedEvent {
     public void setOrderSource(OrderSource orderSource) {
         this.orderSource = orderSource;
     }
+
+    public String getRewardsId() {
+        return rewardsId;
+    }
+
+    public void setRewardsId(String rewardsId) { this.rewardsId = rewardsId; }
 
     public void setBeverages(List<LineItem> beverages) {
         this.beverages = beverages;

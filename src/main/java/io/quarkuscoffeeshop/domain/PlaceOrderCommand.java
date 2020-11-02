@@ -8,9 +8,11 @@ import java.util.*;
 @RegisterForReflection
 public class PlaceOrderCommand {
 
-    private final String id = UUID.randomUUID().toString();
+    private String id = UUID.randomUUID().toString();
 
     private OrderSource orderSource;
+
+    private String rewardsId;
 
     private final CommandType commandType = CommandType.PLACE_ORDER;
 
@@ -23,8 +25,10 @@ public class PlaceOrderCommand {
     public PlaceOrderCommand() {
     }
 
-    public PlaceOrderCommand(OrderSource orderSource, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
+    public PlaceOrderCommand(String id, OrderSource orderSource, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
+        this.id = id;
         this.orderSource = orderSource;
+        this.rewardsId = rewardsId;
         this.baristaItems = Optional.ofNullable(baristaItems);
         this.kitchenItems = Optional.ofNullable(kitchenItems);
         this.total = total;
@@ -35,6 +39,7 @@ public class PlaceOrderCommand {
         return new StringJoiner(", ", PlaceOrderCommand.class.getSimpleName() + "[", "]")
                 .add("id='" + id + "'")
                 .add("orderSource=" + orderSource)
+                .add("rewardsId=" + rewardsId)
                 .add("commandType=" + commandType)
                 .add("baristaItems=" + baristaItems)
                 .add("kitchenItems=" + kitchenItems)
@@ -50,6 +55,7 @@ public class PlaceOrderCommand {
         return Objects.equals(id, that.id) &&
                 orderSource == that.orderSource &&
                 commandType == that.commandType &&
+                rewardsId == that.rewardsId &&
                 Objects.equals(baristaItems, that.baristaItems) &&
                 Objects.equals(kitchenItems, that.kitchenItems) &&
                 Objects.equals(total, that.total);
@@ -57,7 +63,7 @@ public class PlaceOrderCommand {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderSource, commandType, baristaItems, kitchenItems, total);
+        return Objects.hash(id, orderSource, rewardsId, commandType, baristaItems, kitchenItems, total);
     }
 
     public String getId() {
@@ -75,6 +81,12 @@ public class PlaceOrderCommand {
     public CommandType getCommandType() {
         return commandType;
     }
+
+    public String getRewardsId() {
+        return rewardsId;
+    }
+
+    public void setRewardsId(String rewardsId) { this.rewardsId = rewardsId; }
 
     public Optional<List<OrderLineItem>> getBaristaItems() {
         return baristaItems;
