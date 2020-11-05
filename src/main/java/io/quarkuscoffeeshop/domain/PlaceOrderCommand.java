@@ -12,7 +12,7 @@ public class PlaceOrderCommand {
 
     private OrderSource orderSource;
 
-    private String rewardsId;
+    private Optional<String> rewardsId = Optional.empty();
 
     private final CommandType commandType = CommandType.PLACE_ORDER;
 
@@ -25,10 +25,9 @@ public class PlaceOrderCommand {
     public PlaceOrderCommand() {
     }
 
-    public PlaceOrderCommand(String id, OrderSource orderSource, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
-        this.id = id;
+    public PlaceOrderCommand(OrderSource orderSource, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
         this.orderSource = orderSource;
-        this.rewardsId = rewardsId;
+        this.rewardsId = Optional.ofNullable(rewardsId);
         this.baristaItems = Optional.ofNullable(baristaItems);
         this.kitchenItems = Optional.ofNullable(kitchenItems);
         this.total = total;
@@ -78,15 +77,17 @@ public class PlaceOrderCommand {
         this.orderSource = orderSource;
     }
 
-    public CommandType getCommandType() {
-        return commandType;
-    }
-
-    public String getRewardsId() {
+    public Optional<String> getRewardsId() {
         return rewardsId;
     }
 
-    public void setRewardsId(String rewardsId) { this.rewardsId = rewardsId; }
+    public void setRewardsId(String rewardsId) {
+        this.rewardsId = Optional.ofNullable(rewardsId);
+    }
+
+    public CommandType getCommandType() {
+        return commandType;
+    }
 
     public Optional<List<OrderLineItem>> getBaristaItems() {
         return baristaItems;

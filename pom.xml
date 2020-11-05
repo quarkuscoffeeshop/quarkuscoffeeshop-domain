@@ -4,13 +4,13 @@
   <parent>
     <artifactId>quarkuscoffeeshop-parent</artifactId>
     <groupId>io.quarkuscoffeeshop</groupId>
-    <version>3.3.0</version>
+    <version>4.0.0</version>
     <relativePath>../quarkuscoffeeshop-parent</relativePath>
   </parent>
 
   <groupId>io.quarkuscoffeeshop</groupId>
   <artifactId>quarkuscoffeeshop-domain</artifactId>
-  <version>3.3.0</version>
+  <version>4.0.0</version>
   <name>quarkuscoffeeshop-domain</name>
   <properties />
 
@@ -46,19 +46,6 @@
     <developerConnection>scm:git:ssh://github.com:quarkuscoffeeshop/quarkuscoffeeshop-domain.git</developerConnection>
     <url>https://github.com/quarkuscoffeeshop/quarkuscoffeeshop-domain.git</url>
   </scm>
-
-  <!-- Sonatype OSSRH -->
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
-  <!-- Sonatype OSSRH -->
 
   <dependencyManagement />
   <dependencies >
@@ -116,62 +103,6 @@
           <target>11</target>
         </configuration>
       </plugin>
-      <!-- Sonatype OSSRH Plugins -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.1.1</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.6</version>
-        <configuration>
-          <executable>gpg</executable>
-        </configuration>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.8</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
-      <!-- Sonatype OSSRH Plugins -->
     </plugins>
   </build>
   <profiles>
@@ -205,16 +136,6 @@
       </build>
       <properties>
         <quarkus.package.type>native</quarkus.package.type>
-      </properties>
-    </profile>
-    <profile>
-      <id>gpg</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <gpg.executable>gpg</gpg.executable>
-        <gpg.keyname>05F083EB9364E8A43EA17DF828B7FA7FBC042EF9</gpg.keyname>
       </properties>
     </profile>
   </profiles>
