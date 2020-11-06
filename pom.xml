@@ -4,7 +4,7 @@
   <parent>
     <artifactId>quarkuscoffeeshop-parent</artifactId>
     <groupId>io.quarkuscoffeeshop</groupId>
-    <version>4.0.0</version>
+    <version>4.1.0</version>
     <relativePath>../quarkuscoffeeshop-parent</relativePath>
   </parent>
 
