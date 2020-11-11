@@ -8,40 +8,49 @@ import java.util.*;
 @RegisterForReflection
 public class PlaceOrderCommand {
 
-    private String id = UUID.randomUUID().toString();
-
-    private OrderSource orderSource;
-
-    private Optional<String> rewardsId = Optional.empty();
-
     private final CommandType commandType = CommandType.PLACE_ORDER;
-
-    Optional<List<OrderLineItem>> baristaItems = Optional.empty();
-
-    Optional<List<OrderLineItem>> kitchenItems = Optional.empty();
-
+    List<OrderLineItem> baristaItems;
+    List<OrderLineItem> kitchenItems;
+    private final String id = UUID.randomUUID().toString();
+    private String storeId;
+    private OrderSource orderSource;
+    private String rewardsId;
     private BigDecimal total;
 
     public PlaceOrderCommand() {
     }
 
-    public PlaceOrderCommand(OrderSource orderSource, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
+    public PlaceOrderCommand(OrderSource orderSource, String storeId, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
         this.orderSource = orderSource;
-        this.rewardsId = Optional.ofNullable(rewardsId);
-        this.baristaItems = Optional.ofNullable(baristaItems);
-        this.kitchenItems = Optional.ofNullable(kitchenItems);
+        this.storeId = storeId;
+        this.rewardsId = rewardsId;
+        this.baristaItems = baristaItems;
+        this.kitchenItems = kitchenItems;
         this.total = total;
+    }
+
+    public Optional<String> getRewardsId() {
+        return Optional.ofNullable(rewardsId);
+    }
+
+    public Optional<List<OrderLineItem>> getBaristaItems() {
+        return Optional.ofNullable(baristaItems);
+    }
+
+    public Optional<List<OrderLineItem>> getKitchenItems() {
+        return Optional.ofNullable(kitchenItems);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", PlaceOrderCommand.class.getSimpleName() + "[", "]")
-                .add("id='" + id + "'")
-                .add("orderSource=" + orderSource)
-                .add("rewardsId=" + rewardsId)
                 .add("commandType=" + commandType)
                 .add("baristaItems=" + baristaItems)
                 .add("kitchenItems=" + kitchenItems)
+                .add("id='" + id + "'")
+                .add("storeId='" + storeId + "'")
+                .add("orderSource=" + orderSource)
+                .add("rewardsId='" + rewardsId + "'")
                 .add("total=" + total)
                 .toString();
     }
@@ -51,62 +60,59 @@ public class PlaceOrderCommand {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PlaceOrderCommand that = (PlaceOrderCommand) o;
-        return Objects.equals(id, that.id) &&
-                orderSource == that.orderSource &&
-                commandType == that.commandType &&
-                rewardsId == that.rewardsId &&
+        return commandType == that.commandType &&
                 Objects.equals(baristaItems, that.baristaItems) &&
                 Objects.equals(kitchenItems, that.kitchenItems) &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(storeId, that.storeId) &&
+                orderSource == that.orderSource &&
+                Objects.equals(rewardsId, that.rewardsId) &&
                 Objects.equals(total, that.total);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderSource, rewardsId, commandType, baristaItems, kitchenItems, total);
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public OrderSource getOrderSource() {
-        return orderSource;
-    }
-
-    public void setOrderSource(OrderSource orderSource) {
-        this.orderSource = orderSource;
-    }
-
-    public Optional<String> getRewardsId() {
-        return rewardsId;
-    }
-
-    public void setRewardsId(String rewardsId) {
-        this.rewardsId = Optional.ofNullable(rewardsId);
+        return Objects.hash(commandType, baristaItems, kitchenItems, id, storeId, orderSource, rewardsId, total);
     }
 
     public CommandType getCommandType() {
         return commandType;
     }
 
-    public Optional<List<OrderLineItem>> getBaristaItems() {
-        return baristaItems;
+    public String getId() {
+        return id;
     }
 
-    public void setBaristaItems(Optional<List<OrderLineItem>> baristaItems) {
-        this.baristaItems = baristaItems;
+    public String getStoreId() {
+        return storeId;
     }
 
-    public Optional<List<OrderLineItem>> getKitchenItems() {
-        return kitchenItems;
-    }
-
-    public void setKitchenItems(Optional<List<OrderLineItem>> kitchenItems) {
-        this.kitchenItems = kitchenItems;
+    public OrderSource getOrderSource() {
+        return orderSource;
     }
 
     public BigDecimal getTotal() {
         return total;
+    }
+
+    public void setBaristaItems(List<OrderLineItem> baristaItems) {
+        this.baristaItems = baristaItems;
+    }
+
+    public void setKitchenItems(List<OrderLineItem> kitchenItems) {
+        this.kitchenItems = kitchenItems;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public void setOrderSource(OrderSource orderSource) {
+        this.orderSource = orderSource;
+    }
+
+    public void setRewardsId(String rewardsId) {
+        this.rewardsId = rewardsId;
     }
 
     public void setTotal(BigDecimal total) {

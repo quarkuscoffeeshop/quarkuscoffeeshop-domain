@@ -8,5 +8,5 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 @RegisterForReflection
 public interface Event {
 
-    public EventType getEventType();
+    EventType getEventType();
 }
