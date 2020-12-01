@@ -11,7 +11,7 @@ public class PlaceOrderCommand {
     private final CommandType commandType = CommandType.PLACE_ORDER;
     List<OrderLineItem> baristaItems;
     List<OrderLineItem> kitchenItems;
-    private final String id = UUID.randomUUID().toString();
+    private String id;
     private String storeId;
     private OrderSource orderSource;
     private String rewardsId;
@@ -20,7 +20,7 @@ public class PlaceOrderCommand {
     public PlaceOrderCommand() {
     }
 
-    public PlaceOrderCommand(OrderSource orderSource, String storeId, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
+    public PlaceOrderCommand(String id, String storeId, OrderSource orderSource, String rewardsId, List<OrderLineItem> baristaItems, List<OrderLineItem> kitchenItems, BigDecimal total) {
         this.orderSource = orderSource;
         this.storeId = storeId;
         this.rewardsId = rewardsId;
